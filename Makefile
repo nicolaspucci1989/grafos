@@ -10,3 +10,5 @@ main.o: main.c grafos.h
 grafos.o: grafos.c grafos.h
 	$(CC) $(CFLAGS) -c grafos.c
 
+clean:
+	rm *.o
