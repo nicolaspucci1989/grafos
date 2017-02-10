@@ -41,3 +41,37 @@ void imprimir_grafo(nodo grafo[])
     imprimir_nodo(&(grafo[i]));
   }
 }
+
+void push(int stack[], int elemento, int *final)
+{
+  stack[*(final)] = elemento;
+  *(final) = *(final) + 1;
+}
+
+
+int pop(int stack[], int *final)
+{
+  int ret;
+  if(*(final)){
+    *(final) = *(final) - 1;
+    ret = stack[*(final)];
+  } else {
+    printf("stack vacio!!\n");
+    ret = -1;
+  }
+  return ret;
+}
+
+
+void imprimirstack(int stack[], int final)
+{
+  int i;
+  if(final){
+    for(i=0; i<final; i++){
+      printf("%d ", stack[i]);
+    }
+  } else {
+    printf("stack vacio!");
+  }
+  putchar('\n');
+}

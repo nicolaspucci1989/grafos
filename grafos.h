@@ -17,5 +17,10 @@ void inicalizar_nodo(nodo *n);
 void inicializar_grafo(nodo g[]);
 void imprimir_nodo(nodo *n);
 void imprimir_grafo(nodo grafo[]);
+void push(int stack[], int elemento, int *final);
+int pop(int stack[], int *final);
+void imprimirstack(int stack[], int final);
+
+
 
 #endif
