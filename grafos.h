@@ -14,7 +14,7 @@ typedef struct {
 } nodo;
 
 
-typedef struct {
+typedef struct {//para registrar que nodos fueron visitados
   int stack[STACK_MAX];
   int final;
 } fifo;
