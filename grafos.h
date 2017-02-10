@@ -29,5 +29,4 @@ int pop(fifo *cola);
 void imprimirstack(fifo *cola);
 
 
-
 #endif

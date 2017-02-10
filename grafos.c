@@ -44,9 +44,6 @@ void imprimir_grafo(nodo grafo[])
 
 void push(fifo *cola, int item)
 {
-  // stack[*(final)] = elemento;
-  // *(final) = *(final) + 1;
-
   cola->stack[cola->final] = item;
   cola->final += 1;
 }

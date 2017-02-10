@@ -2,8 +2,6 @@
 
 
 int main() {
-  // int stack[5];
-  // int  final = 0;
   fifo cola;
 
 
