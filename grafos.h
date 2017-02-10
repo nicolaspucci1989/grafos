@@ -15,7 +15,7 @@ typedef struct {
 
 
 typedef struct {//para registrar que nodos fueron visitados
-  int stack[STACK_MAX];
+  nodo *q[STACK_MAX];
   int final;
   int cabeza;
 } fifo;
@@ -25,7 +25,7 @@ void inicalizar_nodo(nodo *n);
 void inicializar_grafo(nodo g[]);
 void imprimir_nodo(nodo *n);
 void imprimir_grafo(nodo grafo[]);
-void push(fifo *cola, int item);
+void push(fifo *cola, nodo *n);
 int pop(fifo *cola);
 void imprimirstack(fifo *cola);
 int estaVacio(fifo *cola);

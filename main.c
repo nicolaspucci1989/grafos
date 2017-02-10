@@ -1,25 +1,15 @@
 #include "grafos.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 
 int main() {
   fifo cola;
+  nodo n;
   cola.cabeza = cola.final = 0;
 
-  
-  push(&cola, 1);
-  imprimirstack(&cola);
-  push(&cola, 2);
-  imprimirstack(&cola);
-  push(&cola, 3);
-  imprimirstack(&cola);
-  pop(&cola);
-  imprimirstack(&cola);
-  pop(&cola);
-  imprimirstack(&cola);
-  pop(&cola);
-  imprimirstack(&cola);
+
+  inicalizar_nodo(&n);
+  push(&cola, &n);
+  imprimir_nodo(cola.q[0]);
 
 
   return 0;

@@ -43,9 +43,9 @@ void imprimir_grafo(nodo grafo[])
 }
 
 
-void push(fifo *cola, int item)
+void push(fifo *cola, nodo *n)
 {
-  cola->stack[cola->final] = item;
+  cola->q[cola->final] = n;
   cola->final += 1;
 }
 
@@ -54,10 +54,10 @@ int pop(fifo *cola)
 {
   int ret;
   if(cola->final){
-    ret = cola->stack[cola->cabeza];
+    ret = cola->q[cola->cabeza];
     cola->cabeza += 1;
   } else {
-    printf("stack vacio!\n");
+    printf("cola vacia!\n");
     ret = -1;
   }
   return ret;
@@ -69,10 +69,10 @@ void imprimirstack(fifo *cola)
   int i;
   if(cola->cabeza < cola->final){
     for(i=cola->cabeza; i < cola->final; i++){
-      printf("%d ", cola->stack[i]);
+      printf("%d ", cola->q[i]);
     }
   } else {
-    printf("stack vacio!");
+    printf("cola vacia!");
   }
   putchar('\n');
 }
