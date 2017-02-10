@@ -52,14 +52,14 @@ void push(fifo *cola, int item)
 }
 
 
-int pop(int stack[], int *final)
+int pop(fifo *cola)
 {
   int ret;
-  if(*(final)){
-    *(final) = *(final) - 1;
-    ret = stack[*(final)];
+  if(cola->final){
+    cola->final -= 1;
+    ret = cola->stack[cola->final];
   } else {
-    printf("stack vacio!!\n");
+    printf("stack vacio!\n");
     ret = -1;
   }
   return ret;

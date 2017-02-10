@@ -13,6 +13,13 @@ int main() {
   imprimirstack(&cola);
   push(&cola, 3);
   imprimirstack(&cola);
+  pop(&cola);
+  imprimirstack(&cola);
+  pop(&cola);
+  imprimirstack(&cola);
+  pop(&cola);
+  imprimirstack(&cola);
+  pop(&cola);
 
 
   return 0;

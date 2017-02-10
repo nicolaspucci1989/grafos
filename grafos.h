@@ -25,7 +25,7 @@ void inicializar_grafo(nodo g[]);
 void imprimir_nodo(nodo *n);
 void imprimir_grafo(nodo grafo[]);
 void push(fifo *cola, int item);
-int pop(int stack[], int *final);
+int pop(fifo *cola);
 void imprimirstack(fifo *cola);
 
 
