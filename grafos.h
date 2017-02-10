@@ -4,6 +4,7 @@
 
 #define VECINOS_MAX 5
 #define NODOS_MAX 5
+#define STACK_MAX 5
 
 
 typedef struct {
@@ -13,13 +14,19 @@ typedef struct {
 } nodo;
 
 
+typedef struct {
+  int stack[STACK_MAX];
+  int final;
+} fifo;
+
+
 void inicalizar_nodo(nodo *n);
 void inicializar_grafo(nodo g[]);
 void imprimir_nodo(nodo *n);
 void imprimir_grafo(nodo grafo[]);
-void push(int stack[], int elemento, int *final);
+void push(fifo *cola, int item);
 int pop(int stack[], int *final);
-void imprimirstack(int stack[], int final);
+void imprimirstack(fifo *cola);
 
 
 
