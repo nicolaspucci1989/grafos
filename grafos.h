@@ -1,5 +1,5 @@
-#ifndef NODOS_H
-#define NODOS_H
+#ifndef GRAFOS_H
+#define GRAFOS_H
 
 
 #define VECINOS_MAX 5
