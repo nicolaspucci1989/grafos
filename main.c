@@ -5,8 +5,9 @@
 
 int main() {
   fifo cola;
+  cola.cabeza = cola.final = 0;
 
-
+  
   push(&cola, 1);
   imprimirstack(&cola);
   push(&cola, 2);
@@ -19,8 +20,7 @@ int main() {
   imprimirstack(&cola);
   pop(&cola);
   imprimirstack(&cola);
-  pop(&cola);
 
-  
+
   return 0;
 }

@@ -54,8 +54,8 @@ int pop(fifo *cola)
 {
   int ret;
   if(cola->final){
-    cola->final -= 1;
-    ret = cola->stack[cola->final];
+    ret = cola->stack[cola->cabeza];
+    cola->cabeza += 1;
   } else {
     printf("stack vacio!\n");
     ret = -1;
@@ -67,8 +67,8 @@ int pop(fifo *cola)
 void imprimirstack(fifo *cola)
 {
   int i;
-  if(cola->final){
-    for(i=0; i<cola->final; i++){
+  if(cola->cabeza < cola->final){
+    for(i=cola->cabeza; i < cola->final; i++){
       printf("%d ", cola->stack[i]);
     }
   } else {
@@ -80,5 +80,5 @@ void imprimirstack(fifo *cola)
 
 int estaVacio(fifo *cola)
 {
-  return cola->final == 0;
+  return cola->cabeza == cola->final;
 }
