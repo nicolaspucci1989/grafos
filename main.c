@@ -4,17 +4,11 @@
 
 
 int main() {
-  fifo cola;
-  nodo n;
-  cola.cabeza = cola.final = 0;
+  nodo u, v;
+  inicalizar_nodo(&u);
+  inicalizar_nodo(&v);
 
-
-  inicalizar_nodo(&n);
-  push(&cola, &n);
-  imprimirStack(&cola);
-  pop(&cola);
-  imprimirStack(&cola);
-
-
+  u.predecesor = &v;
+  imprimir_nodo(&u);
   return 0;
 }

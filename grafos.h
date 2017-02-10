@@ -6,12 +6,15 @@
 #define NODOS_MAX 5
 #define STACK_MAX 5
 
+typedef struct nodo nodo;
 
-typedef struct {
+
+struct nodo{
   int id;
   int distancia;
   int vecinos[VECINOS_MAX];
-} nodo;
+  struct nodo *predecesor;
+};
 
 
 typedef struct {//para registrar que nodos fueron visitados

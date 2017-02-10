@@ -11,6 +11,7 @@ void inicalizar_nodo(nodo *n)
   for(i=0; i<VECINOS_MAX; i++){
     n->vecinos[i] = -1;
   }
+  n->predecesor = NULL;
 }
 
 
@@ -30,7 +31,11 @@ void imprimir_nodo(nodo *n)
   for(i=0; i<VECINOS_MAX; i++){
     printf("%d  ", n->vecinos[i]);
   }
-  putchar('\n');
+  if(n->predecesor!= NULL){
+    printf("Predecesor %d\n", n->predecesor->id);
+  } else {
+    printf("%s\n", "NULL");
+  }
 }
 
 
@@ -80,3 +85,53 @@ int estaVacio(fifo *cola)
 {
   return cola->cabeza == cola->final;
 }
+
+
+int noFueVisitado(nodo *n)
+{
+  return n->distancia == -1;
+}
+
+
+// bfs()
+// {
+//   * inicializar las distancias a -1
+//   * empezar la busqueda en la fuente y asignarle
+//   una distancia de 0
+//   * visitar todos los vecinos de la fuente y
+//   asignarles una distancia de 1 y setear su
+//   predecesor a la fuente
+//   * visitar todos los vecinos de los vertices culla
+//   distancia es 1 y que todavia no fueron visitados, y
+//   asignarle a cada uno una distancia de 2 y su predecesor
+//   al nodo correspondiente
+//   * continuar hasta que todos los nodos fueron visitados
+//
+  // int i;
+  // nodo* v, u;
+  //
+  // inicializar_grafo(g);
+  // // pushear fuente
+  // g[0].distancia = 0;
+  // g[0].id = 0;
+  // push(&(g[0]));
+  //
+  // while(!estaVacio(cola)){
+  //   // sacar un vertice u de la cola
+  //   u = pop(cola);
+  //
+  //   // por cada vecino v de u que no fue visitado:
+  //   //   setear la distancia de v a 1 mas que la de u
+  //   //   setear su predecesor a u
+  //   //   pushear v
+
+  //   for(i=0; i!= -1; i++){
+  //     v = u->vecinos[i];
+  //     if(noFueVisitado(v)){
+  //       v->distancia = u->distancia + 1;
+  //       v->predecesor = u
+  //       push(cola, v);
+  //     }
+  //   }
+  // }
+// }
