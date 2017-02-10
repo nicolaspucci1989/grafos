@@ -27,7 +27,7 @@ void imprimir_nodo(nodo *n);
 void imprimir_grafo(nodo grafo[]);
 void push(fifo *cola, nodo *n);
 nodo* pop(fifo *cola);
-void imprimirstack(fifo *cola);
+void imprimirStack(fifo *cola);
 int estaVacio(fifo *cola);
 
 #endif

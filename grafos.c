@@ -57,19 +57,18 @@ nodo* pop(fifo *cola)
     ret = cola->q[cola->cabeza];
     cola->cabeza += 1;
   } else {
-    printf("cola vacia!\n");
     ret = NULL;
   }
   return ret;
 }
 
 
-void imprimirstack(fifo *cola)
+void imprimirStack(fifo *cola)
 {
   int i;
   if(cola->cabeza < cola->final){
     for(i=cola->cabeza; i < cola->final; i++){
-      printf("%d ", cola->q[i]);
+      imprimir_nodo(cola->q[i]);
     }
   } else {
     printf("cola vacia!");

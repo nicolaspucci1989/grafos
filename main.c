@@ -11,13 +11,10 @@ int main() {
 
   inicalizar_nodo(&n);
   push(&cola, &n);
-  imprimir_nodo(cola.q[0]);
-  imprimir_nodo(pop(&cola));
-  if (pop(&cola) == NULL) {
-    printf("%s\n", "NULL");
-  } else {
-    printf("%s\n", "No NULL");
-  }
+  imprimirStack(&cola);
+  pop(&cola);
+  imprimirStack(&cola);
+  
 
   return 0;
 }
