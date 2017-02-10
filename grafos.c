@@ -75,3 +75,9 @@ void imprimirstack(fifo *cola)
   }
   putchar('\n');
 }
+
+
+int estaVacio(fifo *cola)
+{
+  return cola->final == 0;
+}
