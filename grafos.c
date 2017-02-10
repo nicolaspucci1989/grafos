@@ -66,14 +66,13 @@ nodo* pop(fifo *cola)
 void imprimirStack(fifo *cola)
 {
   int i;
-  if(cola->cabeza < cola->final){
+  if(!estaVacio(cola)){
     for(i=cola->cabeza; i < cola->final; i++){
       imprimir_nodo(cola->q[i]);
     }
   } else {
-    printf("cola vacia!");
+    printf("cola vacia!\n");
   }
-  putchar('\n');
 }
 
 

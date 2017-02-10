@@ -12,6 +12,8 @@ int main() {
   inicalizar_nodo(&n);
   push(&cola, &n);
   imprimirStack(&cola);
+  pop(&cola);
+  imprimirStack(&cola);
 
 
   return 0;
