@@ -50,15 +50,15 @@ void push(fifo *cola, nodo *n)
 }
 
 
-int pop(fifo *cola)
+nodo* pop(fifo *cola)
 {
-  int ret;
-  if(cola->final){
+  nodo *ret;
+  if(!estaVacio(cola)){
     ret = cola->q[cola->cabeza];
     cola->cabeza += 1;
   } else {
     printf("cola vacia!\n");
-    ret = -1;
+    ret = NULL;
   }
   return ret;
 }
