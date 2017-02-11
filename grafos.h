@@ -5,6 +5,8 @@
 #define VECINOS_MAX 5
 #define NODOS_MAX 5
 #define STACK_MAX 5
+#define FILAS 4
+#define COLUMNAS 4
 
 typedef struct Nodo Nodo;
 
@@ -36,5 +38,8 @@ int estaVacio(Fifo *cola);
 int noFueVisitado(Nodo *n);
 Nodo* newNodo();
 Fifo* newFifo();
+void inicialiar_matriz(int matriz[FILAS][COLUMNAS]);
+void imprimir_matriz(int matriz[FILAS][COLUMNAS]);
+void leer_grafo(char *archivo, int matriz[][COLUMNAS]);
 
 #endif
