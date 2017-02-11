@@ -3,21 +3,39 @@
 #include "grafos.h"
 
 int main() {
-  // int id = 0, i;
-  int matriz[FILAS][COLUMNAS];
-  int vecinos[5];
+  Nodo *n, *m, *v, *x;
+  Fifo *f = NULL;
 
-  inicialiar_matriz(matriz);
-  leer_grafo("grafo.txt", matriz);
-  imprimir_matriz(matriz);
+  f = newFifo(f);
+  f->final = f->cabeza = 0;
+  n = newNodo();
+  v = newNodo();
+  x = newNodo();
+  inicalizar_nodo(v);
+  inicalizar_nodo(x);
+  inicalizar_nodo(n);
+  n->id = 1;
+  x->id = 2;
+  v->id = 3;
+  push(f, n);
+  push(f, x);
+  push(f, v);
+  imprimirFifo(f);
+  puts("==================");
 
-  //vecinos
-  vecinos_de(0, matriz, vecinos);
-  imprimir_vector(vecinos, 5);
-  // for(i=0; i<COLUMNAS; i++){
-  //   if(matriz[id][i]){
-  //     printf("%d ", i);
-  //   }
-  // }
+  // imprimirFifo(f);
+  m = pop(f);
+  imprimir_nodo(m);
+  m = pop(f);
+  imprimir_nodo(m);
+  m = pop(f);
+  imprimir_nodo(m);
+
+
+  free(n);
+  free(x);
+  free(v);
+  free(f);
+
   return 0;
 }

@@ -181,7 +181,7 @@ void imprimir_vector(int vector[], int n)
   putchar('\n');
 }
 
-
+//
 // void bfs(Nodo grafo[])
 // {
 // //   * inicializar las distancias a -1
@@ -198,11 +198,13 @@ void imprimir_vector(int vector[], int n)
 // //
 //   int i;
 //   Nodo *v, *u;
+//   Fifo *cola;
+//   cola = newFifo();
 //
 //   inicializar_grafo(g);
 //   // pushear fuente
 //   g[0].distancia = 0;
-//   push(&(g[0]));
+//   push(cola, &(g[0]));
 //
 //   while(!estaVacio(cola)){
 //     // sacar un vertice u de la cola
@@ -212,6 +214,19 @@ void imprimir_vector(int vector[], int n)
 //     //   setear la distancia de v a 1 mas que la de u
 //     //   setear su predecesor a u
 //     //   pushear v
+//
+//
+//     vecinos_de(u->id, matrizDeAdyacencia, vecinos);
+//     for(i=0; i<VECINOS_MAX; i++){
+//       if(vecinos[i] != -1 &&
+//         grafo[vecinos[i]].distancia != -1){
+//           grafo[i].distancia = u->distancia + 1;
+//           grafo[i].predecesor = u;
+//           push(&grafo[i]);
+//       }
+//     }
+//
+//
 //
 //     for(i=0; u.vecinos[i] != -1 && i < VECINOS_MAX; i++){
 //       v = &(grafo[u->vecinos[i]]);
