@@ -149,6 +149,39 @@ void inicialiar_matriz(int matriz[][COLUMNAS])
 }
 
 
+void inicializar_vector(int vector[], int n)
+{
+  int i;
+  for(i=0; i<n; i++){
+    vector[i] = -1;
+  }
+}
+
+
+void vecinos_de(int nodo, int matriz[][COLUMNAS], int vecinos[])
+{
+  int i, j;
+
+  inicializar_vector(vecinos, 5);
+  for(i=0, j=0; i<COLUMNAS; i++ ){
+    if(matriz[nodo][i]){
+      vecinos[j] = i;
+      j++;
+    }
+  }
+}
+
+
+void imprimir_vector(int vector[], int n)
+{
+  int i;
+  for(i=0; i< n; i++){
+    printf("%d ", vector[i]);
+  }
+  putchar('\n');
+}
+
+
 // void bfs(Nodo grafo[])
 // {
 // //   * inicializar las distancias a -1
