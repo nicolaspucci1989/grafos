@@ -125,8 +125,8 @@ int noFueVisitado(nodo *n)
   //   //   setear su predecesor a u
   //   //   pushear v
 
-  //   for(i=0; i!= -1; i++){
-  //     v = u->vecinos[i];
+  //   for(i=0; u.vecinos[i] != -1 || i < VECINOS_MAX; i++){
+  //     v = &(grafo[u->vecinos[i]]);
   //     if(noFueVisitado(v)){
   //       v->distancia = u->distancia + 1;
   //       v->predecesor = u
