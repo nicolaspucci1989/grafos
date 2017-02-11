@@ -6,31 +6,35 @@
 #define NODOS_MAX 5
 #define STACK_MAX 5
 
-typedef struct nodo nodo;
+typedef struct Nodo Nodo;
 
 
-struct nodo{
+struct Nodo{
   int id;
   int distancia;
   int vecinos[VECINOS_MAX];
-  struct nodo *predecesor;
+  struct Nodo *predecesor;
 };
 
 
 typedef struct {//para registrar que nodos fueron visitados
-  nodo *q[STACK_MAX];
+  Nodo *q[STACK_MAX];
   int final;
   int cabeza;
-} fifo;
+} Fifo;
 
 
-void inicalizar_nodo(nodo *n);
-void inicializar_grafo(nodo g[]);
-void imprimir_nodo(nodo *n);
-void imprimir_grafo(nodo grafo[]);
-void push(fifo *cola, nodo *n);
-nodo* pop(fifo *cola);
-void imprimirStack(fifo *cola);
-int estaVacio(fifo *cola);
+void inicalizar_nodo(Nodo *n);
+void inicializar_grafo(Nodo g[]);
+void inicializar_fifo(Fifo *f);
+void imprimir_nodo(Nodo *n);
+void imprimir_grafo(Nodo grafo[]);
+void push(Fifo *cola, Nodo *n);
+Nodo* pop(Fifo *cola);
+void imprimirFifo(Fifo *cola);
+int estaVacio(Fifo *cola);
+int noFueVisitado(Nodo *n);
+Nodo* newNodo();
+Fifo* newFifo();
 
 #endif

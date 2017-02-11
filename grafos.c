@@ -3,7 +3,19 @@
 #include "grafos.h"
 
 
-void inicalizar_nodo(nodo *n)
+Nodo* newNodo()
+{
+  return  malloc(sizeof(Nodo));
+}
+
+
+Fifo* newFifo()
+{
+  return  malloc(sizeof(Fifo));
+}
+
+
+void inicalizar_nodo(Nodo *n)
 {
   int i;
   n->id = -1;
@@ -15,7 +27,7 @@ void inicalizar_nodo(nodo *n)
 }
 
 
-void inicializar_grafo(nodo g[])
+void inicializar_grafo(Nodo g[])
 {
   int i;
   for(i=0; i<NODOS_MAX; i++){
@@ -24,10 +36,16 @@ void inicializar_grafo(nodo g[])
 }
 
 
-void imprimir_nodo(nodo *n)
+void inicializar_fifo(Fifo *f)
+{
+  f->cabeza = f->final = 0;
+}
+
+
+void imprimir_nodo(Nodo *n)
 {
   int i;
-  printf("%d %d: ",n->id, n->distancia);
+  printf("Id %d Dist %d Vecinos: ",n->id, n->distancia);
   for(i=0; i<VECINOS_MAX; i++){
     printf("%d  ", n->vecinos[i]);
   }
@@ -39,7 +57,7 @@ void imprimir_nodo(nodo *n)
 }
 
 
-void imprimir_grafo(nodo grafo[])
+void imprimir_grafo(Nodo grafo[])
 {
   int i;
   for(i=0; i<NODOS_MAX; i++){
@@ -48,16 +66,16 @@ void imprimir_grafo(nodo grafo[])
 }
 
 
-void push(fifo *cola, nodo *n)
+void push(Fifo *cola, Nodo *n)
 {
   cola->q[cola->final] = n;
   cola->final += 1;
 }
 
 
-nodo* pop(fifo *cola)
+Nodo* pop(Fifo *cola)
 {
-  nodo *ret;
+  Nodo *ret;
   if(!estaVacio(cola)){
     ret = cola->q[cola->cabeza];
     cola->cabeza += 1;
@@ -68,7 +86,7 @@ nodo* pop(fifo *cola)
 }
 
 
-void imprimirStack(fifo *cola)
+void imprimirFifo(Fifo *cola)
 {
   int i;
   if(!estaVacio(cola)){
@@ -81,13 +99,13 @@ void imprimirStack(fifo *cola)
 }
 
 
-int estaVacio(fifo *cola)
+int estaVacio(Fifo *cola)
 {
   return cola->cabeza == cola->final;
 }
 
 
-int noFueVisitado(nodo *n)
+int noFueVisitado(Nodo *n)
 {
   return n->distancia == -1;
 }
