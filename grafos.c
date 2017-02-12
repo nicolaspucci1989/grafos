@@ -15,10 +15,10 @@ Fifo* newFifo()
 }
 
 
-void inicalizar_nodo(Nodo *n)
+void inicalizar_nodo(Nodo *n, int id)
 {
   int i;
-  n->id = -1;
+  n->id = id;
   n->distancia = -1;
   for(i=0; i<VECINOS_MAX; i++){
     n->vecinos[i] = -1;
@@ -31,7 +31,7 @@ void inicializar_grafo(Nodo g[])
 {
   int i;
   for(i=0; i<NODOS_MAX; i++){
-    inicalizar_nodo(&(g[i]));
+    inicalizar_nodo(&(g[i]), i);
   }
 }
 

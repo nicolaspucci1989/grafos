@@ -26,7 +26,7 @@ typedef struct {//para registrar que nodos fueron visitados
 } Fifo;
 
 
-void inicalizar_nodo(Nodo *n);
+void inicalizar_nodo(Nodo *n, int id);
 void inicializar_grafo(Nodo g[]);
 void inicializar_fifo(Fifo *f);
 void imprimir_nodo(Nodo *n);
