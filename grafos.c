@@ -138,7 +138,7 @@ void imprimir_matriz(int matriz[][COLUMNAS])
 }
 
 
-void inicialiar_matriz(int matriz[][COLUMNAS])
+void inicializar_matriz(int matriz[][COLUMNAS])
 {
   int i,j;
   for(i=0; i<FILAS; i++){
@@ -238,3 +238,28 @@ void imprimir_vector(int vector[], int n)
 //     }
 //   }
 // }
+
+
+void bfs(Nodo grafo[])
+{
+  Nodo *n, *m;
+  Fifo fifo;
+  int i;
+
+  // inicializar_grafo(grafo);
+  inicializar_fifo(&fifo);
+  grafo[0].distancia = 0;
+  push(&fifo, &(grafo[0]));
+
+  while(!estaVacio(&fifo)){
+    m = pop(&fifo);
+    for(i=0; i<VECINOS_MAX; i++){
+      if( m->vecinos[i] != -1 && grafo[m->vecinos[i]].distancia == -1){
+        n = &(grafo[m->vecinos[i]]);
+        n->distancia = m->distancia + 1;
+        // n->predecesor = m;
+        push(&fifo, n);
+      }
+    }
+  }
+}

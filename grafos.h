@@ -38,12 +38,13 @@ int estaVacio(Fifo *cola);
 int noFueVisitado(Nodo *n);
 Nodo* newNodo();
 Fifo* newFifo();
-void inicialiar_matriz(int matriz[FILAS][COLUMNAS]);
+void inicializar_matriz(int matriz[FILAS][COLUMNAS]);
 void imprimir_matriz(int matriz[FILAS][COLUMNAS]);
 void leer_grafo(char *archivo, int matriz[][COLUMNAS]);
 void inicializar_vector(int vector[], int n);
 void vecinos_de(int nodo, int matriz[][COLUMNAS], int vecinos[]);
 void imprimir_vector(int vector[], int n);
+void bfs(Nodo grafo[]);
 
 
 #endif
