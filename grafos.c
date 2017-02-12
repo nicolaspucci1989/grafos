@@ -21,7 +21,7 @@ void inicalizar_nodo(Nodo *n, int id)
   n->id = id;
   n->distancia = -1;
   for(i=0; i<VECINOS_MAX; i++){
-    n->vecinos[i] = -1;
+    n->vecinos[i] = 0;
   }
   n->predecesor = NULL;
 }
@@ -121,6 +121,21 @@ void leer_grafo(char *archivo, int matriz[][COLUMNAS])
     fscanf(input, "%d %d", &m, &n);
     matriz[m][n] = 1;
     matriz[n][m] = 1;
+  }
+  fclose(input);
+}
+
+
+//con struct nodo
+void leer_grafo2(char *archivo, Nodo grafo[])
+{
+  int i, nodoU, nodoV, cantidadDeVertices;
+  FILE* input = fopen(archivo,"r");
+  fscanf(input, "%d", &cantidadDeVertices);
+  for(i=0; i<cantidadDeVertices; i++){
+    fscanf(input, "%d %d", &nodoU, &nodoV);
+    grafo[nodoU].vecinos[nodoV] = 1;
+    grafo[nodoV].vecinos[nodoU] = 1;
   }
   fclose(input);
 }
@@ -259,6 +274,36 @@ void bfs(Nodo grafo[])
         n->distancia = m->distancia + 1;
         // n->predecesor = m;
         push(&fifo, n);
+      }
+    }
+  }
+}
+
+
+void inicializar_fuente(Nodo *n){
+  n->distancia = 0;
+}
+
+
+void bfs_con_vector_de_adyacencia(Nodo grafo[])
+{
+  int i;
+  Fifo fifo;
+  Nodo *u, *v;
+
+
+  inicializar_fifo(&fifo);
+  inicializar_fuente(&(grafo[0])); // a 0
+  push(&fifo, &(grafo[0]));
+
+
+  while(!estaVacio(&fifo)){
+    u = pop(&fifo);
+    for(i=0; i<VECINOS_MAX; i++){
+      if(u->vecinos[i] != 0 && grafo[i].distancia == -1){
+        v = &(grafo[i]);
+        v->distancia = u->distancia + 1;
+        push(&fifo, v);
       }
     }
   }

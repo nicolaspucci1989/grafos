@@ -9,21 +9,22 @@
 #define COLUMNAS 4
 
 typedef struct Nodo Nodo;
+typedef struct Fifo Fifo;
 
 
 struct Nodo{
   int id;
   int distancia;
-  int vecinos[VECINOS_MAX];
+  int vecinos[VECINOS_MAX];//vector de adyacencia
   struct Nodo *predecesor;
 };
 
 
-typedef struct {//para registrar que nodos fueron visitados
+struct Fifo {//para registrar que nodos fueron visitados
   Nodo *q[STACK_MAX];
   int final;
   int cabeza;
-} Fifo;
+};
 
 
 void inicalizar_nodo(Nodo *n, int id);
@@ -41,10 +42,12 @@ Fifo* newFifo();
 void inicializar_matriz(int matriz[FILAS][COLUMNAS]);
 void imprimir_matriz(int matriz[FILAS][COLUMNAS]);
 void leer_grafo(char *archivo, int matriz[][COLUMNAS]);
+void leer_grafo2(char *archivo, Nodo grafo[]);
 void inicializar_vector(int vector[], int n);
 void vecinos_de(int nodo, int matriz[][COLUMNAS], int vecinos[]);
 void imprimir_vector(int vector[], int n);
 void bfs(Nodo grafo[]);
+void bfs_con_vector_de_adyacencia(Nodo grafo[]);
 
 
 #endif
