@@ -20,10 +20,8 @@ int main(int argc, char *argv[]) {
     leer_grafo(archivo, grafo);
     bfs_con_vector_de_adyacencia(grafo);
     imprimir_grafo(grafo);
+    fclose(archivo);
   }
-
-
-  fclose(archivo);
 
 
   return 0;
