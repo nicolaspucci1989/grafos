@@ -32,7 +32,6 @@ void inicalizar_nodo(Nodo *n, int id)
   for(i=0; i<VECINOS_MAX; i++){
     n->vecinos[i] = 0;
   }
-  n->predecesor = NULL;
 }
 
 
@@ -58,11 +57,7 @@ void imprimir_nodo(Nodo *n)
   for(i=0; i<VECINOS_MAX; i++){
     printf("%d  ", n->vecinos[i]);
   }
-  if(n->predecesor!= NULL){
-    printf("Predecesor %d\n", n->predecesor->id);
-  } else {
-    printf("%s\n", "NULL");
-  }
+  putchar('\n');
 }
 
 
@@ -266,7 +261,6 @@ void bfs(Nodo grafo[])
       if( m->vecinos[i] != -1 && grafo[m->vecinos[i]].distancia == -1){
         n = &(grafo[m->vecinos[i]]);
         n->distancia = m->distancia + 1;
-        // n->predecesor = m;
         push(&fifo, n);
       }
     }

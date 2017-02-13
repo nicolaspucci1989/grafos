@@ -16,7 +16,6 @@ struct Nodo{
   int id;
   int distancia;
   int vecinos[VECINOS_MAX];//vector de adyacencia
-  struct Nodo *predecesor;
 };
 
 
