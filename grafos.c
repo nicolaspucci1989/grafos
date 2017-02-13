@@ -3,6 +3,15 @@
 #include "grafos.h"
 
 
+void formatoDeArchivo(){
+  printf("\nFormato de archivo de entrada:\n");
+  printf("<cantidad de nodos> <cantidad de vertices> <fuente> <sumidero>\n");
+  printf("<vertice 1> <vertice 2> <capacidad>\n");
+  printf(".\n.\n.\n");
+  printf("<vertice n> <vertice m> <capacidad>\n");
+}
+
+
 Nodo* newNodo()
 {
   return  malloc(sizeof(Nodo));
@@ -111,33 +120,16 @@ int noFueVisitado(Nodo *n)
 }
 
 
-// con matriz de adyacencia
-void leer_grafo(char *archivo, int matriz[][COLUMNAS])
-{
-  int i, m, n, cantidadDeVertices;
-  FILE* input = fopen(archivo,"r");
-  fscanf(input, "%d", &cantidadDeVertices);
-  for(i=0; i<cantidadDeVertices; i++){
-    fscanf(input, "%d %d", &m, &n);
-    matriz[m][n] = 1;
-    matriz[n][m] = 1;
-  }
-  fclose(input);
-}
-
-
 //con struct nodo
-void leer_grafo2(char *archivo, Nodo grafo[])
+void leer_grafo(FILE* input , Nodo grafo[])
 {
   int i, nodoU, nodoV, cantidadDeVertices;
-  FILE* input = fopen(archivo,"r");
   fscanf(input, "%d", &cantidadDeVertices);
   for(i=0; i<cantidadDeVertices; i++){
     fscanf(input, "%d %d", &nodoU, &nodoV);
     grafo[nodoU].vecinos[nodoV] = 1;
     grafo[nodoV].vecinos[nodoU] = 1;
   }
-  fclose(input);
 }
 
 

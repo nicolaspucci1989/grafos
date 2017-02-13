@@ -41,13 +41,13 @@ Nodo* newNodo();
 Fifo* newFifo();
 void inicializar_matriz(int matriz[FILAS][COLUMNAS]);
 void imprimir_matriz(int matriz[FILAS][COLUMNAS]);
-void leer_grafo(char *archivo, int matriz[][COLUMNAS]);
-void leer_grafo2(char *archivo, Nodo grafo[]);
+void leer_grafo(FILE* input, Nodo grafo[]);
 void inicializar_vector(int vector[], int n);
 void vecinos_de(int nodo, int matriz[][COLUMNAS], int vecinos[]);
 void imprimir_vector(int vector[], int n);
 void bfs(Nodo grafo[]);
 void bfs_con_vector_de_adyacencia(Nodo grafo[]);
+void formatoDeArchivo();
 
 
 #endif
