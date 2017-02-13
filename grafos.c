@@ -70,7 +70,9 @@ void imprimir_grafo(Nodo grafo[])
 {
   int i;
   for(i=0; i<NODOS_MAX; i++){
-    imprimir_nodo(&(grafo[i]));
+    if(grafo[i].distancia != -1){
+      imprimir_nodo(&(grafo[i]));
+    }
   }
 }
 

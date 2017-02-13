@@ -2,9 +2,9 @@
 #define GRAFOS_H
 
 
-#define VECINOS_MAX 5
-#define NODOS_MAX 5
-#define STACK_MAX 5
+#define VECINOS_MAX 10
+#define NODOS_MAX 10
+#define STACK_MAX 10
 #define FILAS 4
 #define COLUMNAS 4
 
