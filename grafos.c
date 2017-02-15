@@ -49,6 +49,10 @@ void inicializar_fifo(Fifo *f)
   f->cabeza = f->final = 0;
 }
 
+void inicializar_fifo_ff(Fifoff *f)
+{
+  f->cabeza = f->final = 0;
+}
 
 void imprimir_nodo(Nodo *n)
 {
@@ -58,6 +62,44 @@ void imprimir_nodo(Nodo *n)
     printf("%d  ", n->vecinos[i]);
   }
   putchar('\n');
+}
+
+
+void imprimir_nodo_ff(Nodoff *n)
+{
+  int i;
+  printf("Id %d caminoDeAumento %d Estado %d Vecinos: ",n->id, n->caminoDeAumento, n->estado);
+  for(i=0; i<VECINOS_MAX; i++){
+    printf("%d  ", n->vecinos[i]);
+  }
+  putchar('\n');
+}
+
+
+void inicalizar_nodo_ff(Nodoff *n, int id)
+{
+  int i;
+  n->id = id;
+  n->caminoDeAumento = -1;
+  n->estado = NODO_INICIALIZADO;
+  for(i=0; i<VECINOS_MAX; i++)
+    n->vecinos[i] = 0;
+}
+
+
+void inicializar_grafo_ff(Nodoff grafo[])
+{
+  int i;
+  for(i=0; i<NODOS_MAX; i++)
+    inicalizar_nodo_ff(&(grafo[i]), i);
+}
+
+
+void imprimir_grafo_ff(Nodoff grafo[])
+{
+  int i;
+  for(i=0; i<NODOS_MAX; i++)
+    imprimir_nodo_ff(&(grafo[i]));
 }
 
 
@@ -78,12 +120,33 @@ void push(Fifo *cola, Nodo *n)
   cola->final += 1;
 }
 
+void push_ff(Fifoff *cola, Nodoff *n)
+{
+  cola->q[cola->final] = n;
+  cola->final += 1;
+  n->estado = NODO_EN_COLA;
+}
+
 
 Nodo* pop(Fifo *cola)
 {
   Nodo *ret;
   if(!estaVacio(cola)){
     ret = cola->q[cola->cabeza];
+    cola->cabeza += 1;
+  } else {
+    ret = NULL;
+  }
+  return ret;
+}
+
+
+Nodoff* pop_ff(Fifoff *cola)
+{
+  Nodoff *ret;
+  if(!estaVacio_ff(cola)){
+    ret = cola->q[cola->cabeza];
+    ret->estado = NODO_ALCANZADO;
     cola->cabeza += 1;
   } else {
     ret = NULL;
@@ -106,6 +169,12 @@ void imprimirFifo(Fifo *cola)
 
 
 int estaVacio(Fifo *cola)
+{
+  return cola->cabeza == cola->final;
+}
+
+
+int estaVacio_ff(Fifoff *cola)
 {
   return cola->cabeza == cola->final;
 }
@@ -296,3 +365,28 @@ void bfs_con_vector_de_adyacencia(Nodo grafo[])
     }
   }
 }
+
+
+// void bfs_ff(Nodoff grafo[], int fuente, int sumidero,
+//             int capacidad[][], int flujo[][], int caminoDeAumento[])
+// {
+//   Fifo fifo;
+//
+//
+//   inicializar_grafo_ff(grafo);
+//   inicializar_fifo(&fifo);
+//
+//   push(&fifo, &(grafo[fuente]));
+//   while(!estaVacio(&fifo)){
+//     u = pop(&fifo);
+//     for(i=0; i<VECINOS_MAX; i++){
+//       if(u.vecino[i] == 1){
+//         if(grafo[i].estado == NODO_INICIALIZADO &&
+//         capacidad[u.id][i] - flujo[u.id][i] > 0){
+//           push(&fifo, &(grafo[i]));
+//           u.caminoDeAumento = i;
+//         }
+//       }
+//     }
+//   }
+// }

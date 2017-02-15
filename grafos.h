@@ -7,14 +7,27 @@
 #define STACK_MAX 10
 #define FILAS 4
 #define COLUMNAS 4
+#define NODO_INICIALIZADO 0
+#define NODO_EN_COLA 1
+#define NODO_ALCANZADO 2
 
 typedef struct Nodo Nodo;
+typedef struct Nodoff Nodoff;
 typedef struct Fifo Fifo;
+typedef struct Fifoff Fifoff;
 
 
 struct Nodo{
   int id;
   int distancia;
+  int vecinos[VECINOS_MAX];//vector de adyacencia
+};
+
+
+struct Nodoff{
+  int id;
+  int caminoDeAumento;
+  int estado;
   int vecinos[VECINOS_MAX];//vector de adyacencia
 };
 
@@ -25,6 +38,12 @@ struct Fifo {//para registrar que nodos fueron visitados
   int cabeza;
 };
 
+
+struct Fifoff {//para registrar que nodos fueron visitados
+  Nodoff *q[STACK_MAX];
+  int final;
+  int cabeza;
+};
 
 void inicalizar_nodo(Nodo *n, int id);
 void inicializar_grafo(Nodo g[]);
@@ -48,5 +67,15 @@ void bfs(Nodo grafo[]);
 void bfs_con_vector_de_adyacencia(Nodo grafo[]);
 void formatoDeArchivo();
 
+
+//Ford-Fulkerson
+void imprimir_nodo_ff(Nodoff *n);
+void inicalizar_nodo_ff(Nodoff *n, int id);
+void inicializar_grafo_ff(Nodoff grafo[]);
+void imprimir_grafo_ff(Nodoff grafo[]);
+void push_ff(Fifoff *cola, Nodoff *n);
+Nodoff* pop_ff(Fifoff *cola);
+void inicializar_fifo_ff(Fifoff *f);
+int estaVacio_ff(Fifoff *cola);
 
 #endif

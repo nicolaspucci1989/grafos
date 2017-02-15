@@ -1,0 +1,10 @@
+bfs:
+	* Inicializar nodos.
+	* Inicializar Fifo. 
+	* Pushear fuente a la cola.
+	* Mientras la lista no este vacia:
+		* Quitar un nodo u.
+		* Por cada vecino v de u:
+			* Si la capacidad de u a v es positiva.
+				y v no fue alcanzado:
+				* Agregar v a la cola.
