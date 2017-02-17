@@ -383,26 +383,25 @@ void bfs_con_vector_de_adyacencia(Nodo grafo[])
 }
 
 
-// void bfs_ff(Nodoff grafo[], int fuente, int sumidero,
-//             int capacidad[][], int flujo[][], int caminoDeAumento[])
-// {
-//   Fifo fifo;
-//
-//
-//   inicializar_grafo_ff(grafo);
-//   inicializar_fifo(&fifo);
-//
-//   push(&fifo, &(grafo[fuente]));
-//   while(!estaVacio(&fifo)){
-//     u = pop(&fifo);
-//     for(i=0; i<VECINOS_MAX; i++){
-//       if(u.vecino[i] == 1){
-//         if(grafo[i].estado == NODO_INICIALIZADO &&
-//         capacidad[u.id][i] - flujo[u.id][i] > 0){
-//           push(&fifo, &(grafo[i]));
-//           u.caminoDeAumento = i;
-//         }
-//       }
-//     }
-//   }
-// }
+void bfs_ff(Nodoff grafo[], int fuente, int sumidero,
+            int capacidad[NODOS_MAX][NODOS_MAX], int flujo[][], int caminoDeAumento[])
+{
+  Fifoff fifo;
+  Nodoff *u, *v;
+
+  inicializar_fifo_ff(&fifo);
+
+  push_ff(&fifo, &(grafo[fuente]));
+  while(!estaVacio_ff(&fifo)){
+    u = pop_ff(&fifo);
+    for(i=0; i<VECINOS_MAX; i++){
+      if(u.vecino[i] == 1){
+        if(grafo[i].estado == NODO_INICIALIZADO &&
+        capacidad[u.id][i] - flujo[u.id][i] > 0){
+          push(&fifo, &(grafo[i]));
+          u.caminoDeAumento = i;
+        }
+      }
+    }
+  }
+}
