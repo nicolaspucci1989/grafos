@@ -2,6 +2,18 @@
 #include <stdlib.h>
 #include "grafos.h"
 
+
+void inicializarMatriz(int matriz[NODOS_MAX][NODOS_MAX])
+{
+  int i,j;
+  for(i=0; i<NODOS_MAX; i++){
+    for(j=0; j<NODOS_MAX; j++){
+      matriz[i][j] = -1;
+    }
+  }
+}
+
+
 int main(int argc, char const *argv[]) {
   FILE* archivo = NULL;
   if (argc <= 1){
@@ -13,11 +25,17 @@ int main(int argc, char const *argv[]) {
   } else {
     Nodoff grafo[NODOS_MAX];
     int fuente, sumidero;
-    int matrizDeCapacidades[NODOS_MAX][NODOS_MAX];
+    int capacidad[NODOS_MAX][NODOS_MAX];
+    int flujo[NODOS_MAX][NODOS_MAX];
 
-
+    inicializarMatriz(capacidad);
     inicializar_grafo_ff(grafo);
-    leer_grafo_ff(archivo, grafo, matrizDeCapacidades, &fuente, &sumidero);
+
+
+    leer_grafo_ff(archivo, grafo,
+      capacidad, &fuente, &sumidero);
+    bfs_ff(grafo, fuente, sumidero,
+      capacidad, flujo);
     imprimir_grafo_ff(grafo);
     fclose(archivo);
   }

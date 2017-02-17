@@ -80,5 +80,9 @@ int estaVacio_ff(Fifoff *cola);
 void leer_grafo_ff(FILE* input, Nodoff grafo[],
                   int matrizDeCapacidades[NODOS_MAX][NODOS_MAX],
                   int *fuente, int *sumidero);
+void bfs_ff(Nodoff grafo[], int fuente,
+            int sumidero,
+            int capacidad[NODOS_MAX][NODOS_MAX],
+            int flujo[NODOS_MAX][NODOS_MAX]);
 
 #endif
