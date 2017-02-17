@@ -383,7 +383,7 @@ void bfs_con_vector_de_adyacencia(Nodo grafo[])
 }
 
 
-void bfs_ff(Nodoff grafo[], int fuente,
+int bfs_ff(Nodoff grafo[], int fuente,
             int sumidero,
             int capacidad[NODOS_MAX][NODOS_MAX],
             int flujo[][NODOS_MAX])
@@ -408,4 +408,5 @@ void bfs_ff(Nodoff grafo[], int fuente,
       }
     }
   }
+  return grafo[sumidero].estado == NODO_ALCANZADO;
 }

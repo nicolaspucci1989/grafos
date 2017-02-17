@@ -27,6 +27,7 @@ int main(int argc, char const *argv[]) {
     int fuente, sumidero;
     int capacidad[NODOS_MAX][NODOS_MAX];
     int flujo[NODOS_MAX][NODOS_MAX];
+    int resultado;
 
     inicializarMatriz(capacidad);
     inicializar_grafo_ff(grafo);
@@ -34,10 +35,15 @@ int main(int argc, char const *argv[]) {
 
     leer_grafo_ff(archivo, grafo,
       capacidad, &fuente, &sumidero);
-    bfs_ff(grafo, fuente, sumidero,
-      capacidad, flujo);
-    imprimir_grafo_ff(grafo);
     fclose(archivo);
+    resultado = bfs_ff(grafo, fuente, sumidero,
+      capacidad, flujo);
+    if(resultado)
+      printf("%s\n", "nodo alcanzado!!");
+    else
+      printf("%s\n", "nodo no alcanzado!!");
   }
+
+  
   return 0;
 }
