@@ -77,5 +77,8 @@ void push_ff(Fifoff *cola, Nodoff *n);
 Nodoff* pop_ff(Fifoff *cola);
 void inicializar_fifo_ff(Fifoff *f);
 int estaVacio_ff(Fifoff *cola);
+void leer_grafo_ff(FILE* input, Nodoff grafo[],
+                  int matrizDeCapacidades[NODOS_MAX][NODOS_MAX],
+                  int *fuente, int *sumidero);
 
 #endif

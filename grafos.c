@@ -199,6 +199,22 @@ void leer_grafo(FILE* input , Nodo grafo[])
 }
 
 
+void leer_grafo_ff(FILE* input, Nodoff grafo[],
+                  int matrizDeCapacidades[NODOS_MAX][NODOS_MAX],
+                  int *fuente, int *sumidero)
+{
+  int nodoU, nodoV, cantidadDeNodos, capacidad;
+  int i;
+  fscanf(input, "%d %d %d",&cantidadDeNodos, fuente, sumidero);
+  for(i=0; i<cantidadDeNodos; i++){
+    fscanf(input, "%d %d %d", &nodoU, &nodoV, &capacidad);
+    grafo[nodoU].vecinos[nodoV] = 1;
+    grafo[nodoV].vecinos[nodoU] = 1;
+    matrizDeCapacidades[nodoU][nodoV] = capacidad;
+  }
+}
+
+
 void imprimir_matriz(int matriz[][COLUMNAS])
 {
   int i, j;
