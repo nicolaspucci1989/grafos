@@ -84,5 +84,6 @@ int bfs_ff(Nodoff grafo[], int fuente,
             int sumidero,
             int capacidad[NODOS_MAX][NODOS_MAX],
             int flujo[NODOS_MAX][NODOS_MAX]);
+void inicializar_estado_nodos(Nodoff grafo[]);
 
 #endif
