@@ -10,6 +10,7 @@
 #define NODO_INICIALIZADO 0
 #define NODO_EN_COLA 1
 #define NODO_ALCANZADO 2
+#define INFINITO 10000
 
 typedef struct Nodo Nodo;
 typedef struct Nodoff Nodoff;
@@ -85,5 +86,7 @@ int bfs_ff(Nodoff grafo[], int fuente,
             int capacidad[NODOS_MAX][NODOS_MAX],
             int flujo[NODOS_MAX][NODOS_MAX]);
 void inicializar_estado_nodos(Nodoff grafo[]);
+int ford_fulkerson(int fuente, int sumidero,
+                  Nodoff grafo[], int capacidad[NODOS_MAX][NODOS_MAX]);
 
 #endif
