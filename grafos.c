@@ -21,7 +21,7 @@ void inicializar_fifo_ff(Fifoff *f)
 void imprimir_nodo_ff(Nodoff *n, int numeroDeNodos)
 {
   int i;
-  printf("Id %d caminoDeAumento %d Estado %d ",n->id, n->caminoDeAumento, n->estado);
+  printf("Id %d predecesor %d Estado %d ",n->id, n->predecesor, n->estado);
   // imprimir capacidad
   printf("%s", "Capacidad: ");
   for(i=0; i<numeroDeNodos; i++){
@@ -40,7 +40,6 @@ void inicializar_nodo_ff(Nodoff *n, int id)
 {
   int i;
   n->id = id;
-  n->caminoDeAumento = -1;
   n->estado = NODO_INICIALIZADO;
   for(i=0; i<NODOS_MAX; i++)
     n->capacidad[i]=0;
@@ -141,6 +140,7 @@ int bfs_ff(Nodoff grafo[], int fuente, int sumidero, int numeroDeNodos)
 
   inicializar_estado_nodos(grafo);
   inicializar_fifo_ff(&fifo);
+  grafo[fuente].predecesor = -1;
   push_ff(&fifo, &(grafo[fuente]));
 
 
@@ -150,14 +150,12 @@ int bfs_ff(Nodoff grafo[], int fuente, int sumidero, int numeroDeNodos)
       if(grafo[i].estado == NODO_INICIALIZADO &&
         u->capacidad[i] - u->flujo[i] > 0){
         push_ff(&fifo, &(grafo[i]));
-        u->caminoDeAumento = i;
-        // break;
+        grafo[i].predecesor = u->id;
       }
     }
   }
 
 
-  grafo[sumidero].caminoDeAumento = -1;
   return grafo[sumidero].estado == NODO_ALCANZADO;
 }
 
@@ -168,45 +166,45 @@ int minimo(int a, int b)
 }
 
 
-int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int numeroDeNodos)
-{
-  int flujoMaximo = 0;
-  int incremento;
-  Nodoff *nodo;
-
-  //Inicializar el flujo en 0
-  inicializar_flujo_grafo(grafo, numeroDeNodos);
-
-
-    bfs_ff(grafo, fuente, sumidero, numeroDeNodos);
-  // while(bfs_ff(grafo, fuente, sumidero, numeroDeNodos)){
-    incremento = INFINITO;
-    // desde la fuente hasta llegar al sumidero, siguiendo el
-    // camino de aumento
-    for(nodo=&(grafo[fuente]); grafo[nodo->id].caminoDeAumento > 0;
-        nodo=&(grafo[nodo->caminoDeAumento])){
-          incremento = minimo(incremento, nodo->capacidad[nodo->caminoDeAumento]
-                      - nodo->flujo[nodo->caminoDeAumento]);
-        }
-
-
-    //ahora incrementar el flujo a lo largo del camino de aumento
-    // for(nodo=&(grafo[fuente]); grafo[nodo->id].caminoDeAumento > 0;
-    //     nodo=&(grafo[nodo->caminoDeAumento])){
-    //       nodo->flujo[nodo->caminoDeAumento] += incremento;
-    //       grafo[nodo->caminoDeAumento].flujo[nodo->id] -= incremento;
-    //     }
-
-    // for(nodo=numeroDeNodos - 1; grafo[nodo].caminoDeAumento>=0; nodo=grafo[nodo].caminoDeAumento){
-    //   flujo[nodo][grafo[nodo].caminoDeAumento] += incremento;
-    //   flujo[grafo[nodo].caminoDeAumento][nodo] -= incremento;
-    // }
-
-
-    flujoMaximo += incremento;
-  // }
-
-
-  return flujoMaximo;
-  // return incremento;
-}
+// int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int numeroDeNodos)
+// {
+//   int flujoMaximo = 0;
+//   int incremento;
+//   Nodoff *nodo;
+//
+//   //Inicializar el flujo en 0
+//   inicializar_flujo_grafo(grafo, numeroDeNodos);
+//
+//
+//     bfs_ff(grafo, fuente, sumidero, numeroDeNodos);
+//   // while(bfs_ff(grafo, fuente, sumidero, numeroDeNodos)){
+//     incremento = INFINITO;
+//     // desde la fuente hasta llegar al sumidero, siguiendo el
+//     // camino de aumento
+//     for(nodo=&(grafo[fuente]); grafo[nodo->id].caminoDeAumento > 0;
+//         nodo=&(grafo[nodo->caminoDeAumento])){
+//           incremento = minimo(incremento, nodo->capacidad[nodo->caminoDeAumento]
+//                       - nodo->flujo[nodo->caminoDeAumento]);
+//         }
+//
+//
+//     //ahora incrementar el flujo a lo largo del camino de aumento
+//     // for(nodo=&(grafo[fuente]); grafo[nodo->id].caminoDeAumento > 0;
+//     //     nodo=&(grafo[nodo->caminoDeAumento])){
+//     //       nodo->flujo[nodo->caminoDeAumento] += incremento;
+//     //       grafo[nodo->caminoDeAumento].flujo[nodo->id] -= incremento;
+//     //     }
+//
+//     // for(nodo=numeroDeNodos - 1; grafo[nodo].caminoDeAumento>=0; nodo=grafo[nodo].caminoDeAumento){
+//     //   flujo[nodo][grafo[nodo].caminoDeAumento] += incremento;
+//     //   flujo[grafo[nodo].caminoDeAumento][nodo] -= incremento;
+//     // }
+//
+//
+//     flujoMaximo += incremento;
+//   // }
+//
+//
+//   return flujoMaximo;
+//   // return incremento;
+// }
