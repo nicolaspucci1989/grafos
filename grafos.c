@@ -156,6 +156,7 @@ int minimo(int a, int b)
 
 int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int numeroDeNodos)
 {
+  int flujoMaximo = 0;
   int incremento;
   int i;
   Nodoff *nodo;
@@ -178,11 +179,11 @@ int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int numeroDeNodos)
 
 
     //ahora incrementar el flujo a lo largo del camino de aumento
-    // for(nodo=&(grafo[fuente]); grafo[nodo->id].caminoDeAumento > 0;
-    //     nodo=&(grafo[nodo->caminoDeAumento])){
-    //       flujo[nodo][grafo[nodo].caminoDeAumento] += incremento;
-    //       flujo[grafo[nodo].caminoDeAumento][nodo] -= incremento;
-    //     }
+    for(nodo=&(grafo[fuente]); grafo[nodo->id].caminoDeAumento > 0;
+        nodo=&(grafo[nodo->caminoDeAumento])){
+          nodo->flujo[nodo->caminoDeAumento] += incremento;
+          grafo[nodo->caminoDeAumento].flujo[nodo->id] -= incremento;
+        }
 
 
     // for(nodo=numeroDeNodos - 1; grafo[nodo].caminoDeAumento>=0; nodo=grafo[nodo].caminoDeAumento){
@@ -191,10 +192,10 @@ int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int numeroDeNodos)
     // }
 
 
-    // flujoMaximo += incremento;
+    flujoMaximo += incremento;
   // }
 
 
-  // return flujoMaximo;
-  return incremento;
+  return flujoMaximo;
+  // return incremento;
 }

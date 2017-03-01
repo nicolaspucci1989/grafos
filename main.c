@@ -54,7 +54,8 @@ int main(int argc, char const *argv[]) {
       inicializar_flujo(&(grafo[i]));
 
 
-    resultado = bfs_ff(grafo, fuente, sumidero, numeroDeNodos);
+    resultado = ford_fulkerson(fuente, sumidero, grafo, numeroDeNodos);
+    printf("%d\n", resultado);
 
     //
     // imprimir_grafo_ff(grafo);
@@ -65,11 +66,11 @@ int main(int argc, char const *argv[]) {
     // putchar('\n');
 
 
-    imprimir_grafo_ff(grafo, numeroDeNodos);
-    if(resultado)
-      printf("%s\n", "nodo alcanzado!!");
-    else
-      printf("%s\n", "nodo no alcanzado!!");
+    // imprimir_grafo_ff(grafo, numeroDeNodos);
+  //   if(resultado)
+  //     printf("%s\n", "nodo alcanzado!!");
+  //   else
+  //     printf("%s\n", "nodo no alcanzado!!");
   }
 
 
