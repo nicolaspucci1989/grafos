@@ -48,7 +48,7 @@ void leer_grafo_ff(FILE* input, Nodoff grafo[],int *fuente,
                   int *sumidero, int *cantidadDeNodos);
 int bfs_ff(Nodoff grafo[], int fuente, int sumidero, int numeroDeNodos);
 void inicializar_estado_nodos(Nodoff grafo[]);
-// int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int cantidadDeNodos);
+int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int cantidadDeNodos);
 
 
 #endif

@@ -49,12 +49,12 @@ int main(int argc, char const *argv[]) {
     fclose(archivo);
 
 
-    inicializar_flujo_grafo(grafo, numeroDeNodos);
-    printf("%d\n", bfs_ff(grafo, fuente, sumidero, numeroDeNodos));
-    // resultado = ford_fulkerson(fuente, sumidero, grafo, numeroDeNodos);
-    // printf("%d\n", resultado);
+    // inicializar_flujo_grafo(grafo, numeroDeNodos);
+    // printf("%d\n", bfs_ff(grafo, fuente, sumidero, numeroDeNodos));
+    resultado = ford_fulkerson(fuente, sumidero, grafo, numeroDeNodos);
+    printf("%d\n", resultado);
 
-    imprimir_grafo_ff(grafo, numeroDeNodos);
+    // imprimir_grafo_ff(grafo, numeroDeNodos);
     // putchar('\n');
     // imprimirMatriz(capacidad);
     // putchar('\n');
@@ -62,7 +62,7 @@ int main(int argc, char const *argv[]) {
     // putchar('\n');
 
 
-    // imprimir_grafo_ff(grafo, numeroDeNodos);
+    imprimir_grafo_ff(grafo, numeroDeNodos);
   //   if(resultado)
   //     printf("%s\n", "nodo alcanzado!!");
   //   else
