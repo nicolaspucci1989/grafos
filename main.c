@@ -37,7 +37,6 @@ int main(int argc, char const *argv[]) {
     exit(1);
   } else {
     Nodoff grafo[NODOS_MAX];
-    int i;
     int fuente, sumidero;
     int resultado;
     int numeroDeNodos;
@@ -50,15 +49,12 @@ int main(int argc, char const *argv[]) {
     fclose(archivo);
 
 
-    for(i=0; i<numeroDeNodos; i++)
-      inicializar_flujo(&(grafo[i]));
+    inicializar_flujo_grafo(grafo, numeroDeNodos);
+    printf("%d\n", bfs_ff(grafo, fuente, sumidero, numeroDeNodos));
+    // resultado = ford_fulkerson(fuente, sumidero, grafo, numeroDeNodos);
+    // printf("%d\n", resultado);
 
-
-    resultado = ford_fulkerson(fuente, sumidero, grafo, numeroDeNodos);
-    printf("%d\n", resultado);
-
-    //
-    // imprimir_grafo_ff(grafo);
+    imprimir_grafo_ff(grafo, numeroDeNodos);
     // putchar('\n');
     // imprimirMatriz(capacidad);
     // putchar('\n');

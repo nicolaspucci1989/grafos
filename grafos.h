@@ -2,11 +2,8 @@
 #define GRAFOS_H
 
 
-#define VECINOS_MAX 10
 #define NODOS_MAX 10
 #define STACK_MAX 10
-#define FILAS 4
-#define COLUMNAS 4
 #define NODO_INICIALIZADO 0
 #define NODO_EN_COLA 1
 #define NODO_ALCANZADO 2
@@ -20,8 +17,8 @@ struct Nodoff{
   int id;
   int caminoDeAumento;
   int estado;
-  int capacidad[VECINOS_MAX]; //vector de adyacencia
-  int flujo[VECINOS_MAX];
+  int capacidad[NODOS_MAX]; //vector de adyacencia
+  int flujo[NODOS_MAX];
 };
 
 
@@ -42,6 +39,7 @@ void imprimir_grafo_ff(Nodoff grafo[], int numeroDeNodos);
 void inicalizar_nodo_ff(Nodoff *n, int id);
 void inicializar_grafo_ff(Nodoff grafo[]);
 void inicializar_flujo(Nodoff *n);
+void inicializar_flujo_grafo(Nodoff grafo[], int numeroDeNodos);
 void push_ff(Fifoff *cola, Nodoff *n);
 Nodoff* pop_ff(Fifoff *cola);
 void inicializar_fifo_ff(Fifoff *f);

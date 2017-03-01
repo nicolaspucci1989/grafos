@@ -21,12 +21,14 @@ void inicializar_fifo_ff(Fifoff *f)
 void imprimir_nodo_ff(Nodoff *n, int numeroDeNodos)
 {
   int i;
-  printf("Id %d caminoDeAumento %d Estado %d Capacidad: ",n->id, n->caminoDeAumento, n->estado);
+  printf("Id %d caminoDeAumento %d Estado %d ",n->id, n->caminoDeAumento, n->estado);
   // imprimir capacidad
+  printf("%s", "Capacidad: ");
   for(i=0; i<numeroDeNodos; i++){
     printf("%d  ", n->capacidad[i]);
   }
   // imprimir flujo
+  printf("%s", "Flujo: ");
   for(i=0; i<numeroDeNodos; i++){
     printf("%d  ", n->flujo[i]);
   }
@@ -40,7 +42,7 @@ void inicializar_nodo_ff(Nodoff *n, int id)
   n->id = id;
   n->caminoDeAumento = -1;
   n->estado = NODO_INICIALIZADO;
-  for(i=0j; i<VECINOS_MAX; i++)
+  for(i=0; i<NODOS_MAX; i++)
     n->capacidad[i]=0;
 }
 
@@ -48,10 +50,21 @@ void inicializar_nodo_ff(Nodoff *n, int id)
 void inicializar_flujo(Nodoff *n)
 {
   int i;
-  for(i=0; i<VECINOS_MAX; i++){
+  for(i=0; i<NODOS_MAX; i++){
     n->flujo[i] = 0;
   }
 }
+
+
+void inicializar_flujo_grafo(Nodoff grafo[], int numeroDeNodos)
+{
+  int i;
+
+  for(i=0; i<numeroDeNodos; i++)
+    inicializar_flujo(&(grafo[i]));
+}
+
+
 void inicializar_grafo_ff(Nodoff grafo[])
 {
   int i;
@@ -128,7 +141,6 @@ int bfs_ff(Nodoff grafo[], int fuente, int sumidero, int numeroDeNodos)
 
   inicializar_estado_nodos(grafo);
   inicializar_fifo_ff(&fifo);
-  // grafo[fuente].caminoDeAumento = -1;
   push_ff(&fifo, &(grafo[fuente]));
 
 
@@ -137,12 +149,14 @@ int bfs_ff(Nodoff grafo[], int fuente, int sumidero, int numeroDeNodos)
     for(i=0; i<numeroDeNodos; i++){
       if(grafo[i].estado == NODO_INICIALIZADO &&
         u->capacidad[i] - u->flujo[i] > 0){
-          push_ff(&fifo, &(grafo[i]));
-          u->caminoDeAumento = i;
-          break;
+        push_ff(&fifo, &(grafo[i]));
+        u->caminoDeAumento = i;
+        // break;
       }
     }
   }
+
+
   grafo[sumidero].caminoDeAumento = -1;
   return grafo[sumidero].estado == NODO_ALCANZADO;
 }
@@ -158,16 +172,14 @@ int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int numeroDeNodos)
 {
   int flujoMaximo = 0;
   int incremento;
-  int i;
   Nodoff *nodo;
 
   //Inicializar el flujo en 0
-  for(i=0; i<numeroDeNodos; i++)
-    inicializar_flujo(&(grafo[i]));
+  inicializar_flujo_grafo(grafo, numeroDeNodos);
 
 
     bfs_ff(grafo, fuente, sumidero, numeroDeNodos);
-  // while(bfs_ff(grafo, fuente, sumidero, capacidad, flujo)){
+  // while(bfs_ff(grafo, fuente, sumidero, numeroDeNodos)){
     incremento = INFINITO;
     // desde la fuente hasta llegar al sumidero, siguiendo el
     // camino de aumento
@@ -179,12 +191,11 @@ int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int numeroDeNodos)
 
 
     //ahora incrementar el flujo a lo largo del camino de aumento
-    for(nodo=&(grafo[fuente]); grafo[nodo->id].caminoDeAumento > 0;
-        nodo=&(grafo[nodo->caminoDeAumento])){
-          nodo->flujo[nodo->caminoDeAumento] += incremento;
-          grafo[nodo->caminoDeAumento].flujo[nodo->id] -= incremento;
-        }
-
+    // for(nodo=&(grafo[fuente]); grafo[nodo->id].caminoDeAumento > 0;
+    //     nodo=&(grafo[nodo->caminoDeAumento])){
+    //       nodo->flujo[nodo->caminoDeAumento] += incremento;
+    //       grafo[nodo->caminoDeAumento].flujo[nodo->id] -= incremento;
+    //     }
 
     // for(nodo=numeroDeNodos - 1; grafo[nodo].caminoDeAumento>=0; nodo=grafo[nodo].caminoDeAumento){
     //   flujo[nodo][grafo[nodo].caminoDeAumento] += incremento;
