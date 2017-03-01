@@ -176,8 +176,7 @@ int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int numeroDeNodos)
   inicializar_flujo_grafo(grafo, numeroDeNodos);
 
 
-    bfs_ff(grafo, fuente, sumidero, numeroDeNodos);
-  // while(bfs_ff(grafo, fuente, sumidero, numeroDeNodos)){
+  while(bfs_ff(grafo, fuente, sumidero, numeroDeNodos)){
     incremento = INFINITO;
     // desde el sumider hasta llegar a la fuente inclusive, siguiendo el
     // camino de aumento (predecesor)
@@ -196,16 +195,9 @@ int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int numeroDeNodos)
         }
 
 
-    // for(nodo=numeroDeNodos - 1; grafo[nodo].caminoDeAumento>=0; nodo=grafo[nodo].caminoDeAumento){
-    //   flujo[nodo][grafo[nodo].caminoDeAumento] += incremento;
-    //   flujo[grafo[nodo].caminoDeAumento][nodo] -= incremento;
-    // }
-
-
     flujoMaximo += incremento;
-  // }
+  }
 
 
   return flujoMaximo;
-  // return incremento;
 }

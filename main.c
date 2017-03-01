@@ -43,30 +43,11 @@ int main(int argc, char const *argv[]) {
 
 
     inicializar_grafo_ff(grafo);
-
-
     leer_grafo_ff(archivo, grafo, &fuente, &sumidero, &numeroDeNodos);
     fclose(archivo);
-
-
-    // inicializar_flujo_grafo(grafo, numeroDeNodos);
-    // printf("%d\n", bfs_ff(grafo, fuente, sumidero, numeroDeNodos));
     resultado = ford_fulkerson(fuente, sumidero, grafo, numeroDeNodos);
-    printf("%d\n", resultado);
-
+    printf("%s %d\n", "Flujo maximo:", resultado);
     // imprimir_grafo_ff(grafo, numeroDeNodos);
-    // putchar('\n');
-    // imprimirMatriz(capacidad);
-    // putchar('\n');
-    // imprimirMatriz(flujo);
-    // putchar('\n');
-
-
-    imprimir_grafo_ff(grafo, numeroDeNodos);
-  //   if(resultado)
-  //     printf("%s\n", "nodo alcanzado!!");
-  //   else
-  //     printf("%s\n", "nodo no alcanzado!!");
   }
 
 
