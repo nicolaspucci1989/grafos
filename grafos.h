@@ -12,31 +12,16 @@
 #define NODO_ALCANZADO 2
 #define INFINITO 10000
 
-typedef struct Nodo Nodo;
 typedef struct Nodoff Nodoff;
-typedef struct Fifo Fifo;
 typedef struct Fifoff Fifoff;
-
-
-struct Nodo{
-  int id;
-  int distancia;
-  int vecinos[VECINOS_MAX];//vector de adyacencia
-};
 
 
 struct Nodoff{
   int id;
   int caminoDeAumento;
   int estado;
-  int vecinos[VECINOS_MAX];//vector de adyacencia
-};
-
-
-struct Fifo {//para registrar que nodos fueron visitados
-  Nodo *q[STACK_MAX];
-  int final;
-  int cabeza;
+  int capacidad[VECINOS_MAX]; //vector de adyacencia
+  int flujo[VECINOS_MAX];
 };
 
 
@@ -46,47 +31,26 @@ struct Fifoff {//para registrar que nodos fueron visitados
   int cabeza;
 };
 
-void inicalizar_nodo(Nodo *n, int id);
-void inicializar_grafo(Nodo g[]);
-void inicializar_fifo(Fifo *f);
-void imprimir_nodo(Nodo *n);
-void imprimir_grafo(Nodo grafo[]);
-void push(Fifo *cola, Nodo *n);
-Nodo* pop(Fifo *cola);
-void imprimirFifo(Fifo *cola);
-int estaVacio(Fifo *cola);
-int noFueVisitado(Nodo *n);
-Nodo* newNodo();
-Fifo* newFifo();
-void inicializar_matriz(int matriz[FILAS][COLUMNAS]);
-void imprimir_matriz(int matriz[FILAS][COLUMNAS]);
-void leer_grafo(FILE* input, Nodo grafo[]);
-void inicializar_vector(int vector[], int n);
-void vecinos_de(int nodo, int matriz[][COLUMNAS], int vecinos[]);
-void imprimir_vector(int vector[], int n);
-void bfs(Nodo grafo[]);
-void bfs_con_vector_de_adyacencia(Nodo grafo[]);
+
+
 void formatoDeArchivo();
 
 
 //Ford-Fulkerson
-void imprimir_nodo_ff(Nodoff *n);
+void imprimir_nodo_ff(Nodoff *n, int numeroDeNodos);
+void imprimir_grafo_ff(Nodoff grafo[], int numeroDeNodos);
 void inicalizar_nodo_ff(Nodoff *n, int id);
 void inicializar_grafo_ff(Nodoff grafo[]);
-void imprimir_grafo_ff(Nodoff grafo[]);
+void inicializar_flujo(Nodoff *n);
 void push_ff(Fifoff *cola, Nodoff *n);
 Nodoff* pop_ff(Fifoff *cola);
 void inicializar_fifo_ff(Fifoff *f);
 int estaVacio_ff(Fifoff *cola);
-void leer_grafo_ff(FILE* input, Nodoff grafo[],
-                  int matrizDeCapacidades[NODOS_MAX][NODOS_MAX],
-                  int *fuente, int *sumidero);
-int bfs_ff(Nodoff grafo[], int fuente,
-            int sumidero,
-            int capacidad[NODOS_MAX][NODOS_MAX],
-            int flujo[NODOS_MAX][NODOS_MAX]);
+void leer_grafo_ff(FILE* input, Nodoff grafo[],int *fuente,
+                  int *sumidero, int *cantidadDeNodos);
+int bfs_ff(Nodoff grafo[], int fuente, int sumidero, int numeroDeNodos);
 void inicializar_estado_nodos(Nodoff grafo[]);
-int ford_fulkerson(int fuente, int sumidero,
-                  Nodoff grafo[], int capacidad[NODOS_MAX][NODOS_MAX]);
+int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int cantidadDeNodos);
+
 
 #endif
