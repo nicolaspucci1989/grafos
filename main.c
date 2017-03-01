@@ -36,18 +36,18 @@ int main(int argc, char const *argv[]) {
     puts("Erro al abrir archivo.");
     exit(1);
   } else {
-    Nodoff grafo[NODOS_MAX];
+    Nodo grafo[NODOS_MAX];
     int fuente, sumidero;
     int resultado;
     int numeroDeNodos;
 
 
-    inicializar_grafo_ff(grafo);
-    leer_grafo_ff(archivo, grafo, &fuente, &sumidero, &numeroDeNodos);
+    inicializar_grafo(grafo);
+    leer_grafo(archivo, grafo, &fuente, &sumidero, &numeroDeNodos);
     fclose(archivo);
     resultado = ford_fulkerson(fuente, sumidero, grafo, numeroDeNodos);
     printf("%s %d\n", "Flujo maximo:", resultado);
-    // imprimir_grafo_ff(grafo, numeroDeNodos);
+    // imprimir_grafo(grafo, numeroDeNodos);
   }
 
 

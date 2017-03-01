@@ -12,13 +12,13 @@ void formatoDeArchivo(){
 }
 
 
-void inicializar_fifo_ff(Fifoff *f)
+void inicializar_fifo(Fifo *f)
 {
   f->cabeza = f->final = 0;
 }
 
 
-void imprimir_nodo_ff(Nodoff *n, int numeroDeNodos)
+void imprimir_nodo(Nodo *n, int numeroDeNodos)
 {
   int i;
   printf("Id %d predecesor %d Estado %d ",n->id, n->predecesor, n->estado);
@@ -36,7 +36,7 @@ void imprimir_nodo_ff(Nodoff *n, int numeroDeNodos)
 }
 
 
-void inicializar_nodo_ff(Nodoff *n, int id)
+void inicializar_nodo(Nodo *n, int id)
 {
   int i;
   n->id = id;
@@ -46,7 +46,7 @@ void inicializar_nodo_ff(Nodoff *n, int id)
 }
 
 
-void inicializar_flujo(Nodoff *n)
+void inicializar_flujo(Nodo *n)
 {
   int i;
   for(i=0; i<NODOS_MAX; i++){
@@ -55,7 +55,7 @@ void inicializar_flujo(Nodoff *n)
 }
 
 
-void inicializar_flujo_grafo(Nodoff grafo[], int numeroDeNodos)
+void inicializar_flujo_grafo(Nodo grafo[], int numeroDeNodos)
 {
   int i;
 
@@ -64,23 +64,23 @@ void inicializar_flujo_grafo(Nodoff grafo[], int numeroDeNodos)
 }
 
 
-void inicializar_grafo_ff(Nodoff grafo[])
+void inicializar_grafo(Nodo grafo[])
 {
   int i;
   for(i=0; i<NODOS_MAX; i++)
-    inicializar_nodo_ff(&(grafo[i]), i);
+    inicializar_nodo(&(grafo[i]), i);
 }
 
 
-void imprimir_grafo_ff(Nodoff grafo[], int numeroDeNodos)
+void imprimir_grafo(Nodo grafo[], int numeroDeNodos)
 {
   int i;
   for(i=0; i<numeroDeNodos; i++)
-    imprimir_nodo_ff(&(grafo[i]), numeroDeNodos);
+    imprimir_nodo(&(grafo[i]), numeroDeNodos);
 }
 
 
-void push_ff(Fifoff *cola, Nodoff *n)
+void push(Fifo *cola, Nodo *n)
 {
   cola->q[cola->final] = n;
   cola->final += 1;
@@ -88,10 +88,10 @@ void push_ff(Fifoff *cola, Nodoff *n)
 }
 
 
-Nodoff* pop_ff(Fifoff *cola)
+Nodo* pop(Fifo *cola)
 {
-  Nodoff *ret;
-  if(!estaVacio_ff(cola)){
+  Nodo *ret;
+  if(!estaVacio(cola)){
     ret = cola->q[cola->cabeza];
     ret->estado = NODO_ALCANZADO;
     cola->cabeza += 1;
@@ -102,13 +102,13 @@ Nodoff* pop_ff(Fifoff *cola)
 }
 
 
-int estaVacio_ff(Fifoff *cola)
+int estaVacio(Fifo *cola)
 {
   return cola->cabeza == cola->final;
 }
 
 
-void leer_grafo_ff(FILE* input, Nodoff grafo[],
+void leer_grafo(FILE* input, Nodo grafo[],
                   int *fuente, int *sumidero, int *cantidadDeNodos)
 {
   int numeroDeVertices;
@@ -122,7 +122,7 @@ void leer_grafo_ff(FILE* input, Nodoff grafo[],
 }
 
 
-void inicializar_estado_nodos(Nodoff grafo[])
+void inicializar_estado_nodos(Nodo grafo[])
 {
   int i;
   for(i=0; i<NODOS_MAX; i++){
@@ -131,25 +131,25 @@ void inicializar_estado_nodos(Nodoff grafo[])
 }
 
 
-int bfs_ff(Nodoff grafo[], int fuente, int sumidero, int numeroDeNodos)
+int bfs(Nodo grafo[], int fuente, int sumidero, int numeroDeNodos)
 {
   int i;
-  Fifoff fifo;
-  Nodoff *u;
+  Fifo fifo;
+  Nodo *u;
 
 
   inicializar_estado_nodos(grafo);
-  inicializar_fifo_ff(&fifo);
+  inicializar_fifo(&fifo);
   grafo[fuente].predecesor = -1;
-  push_ff(&fifo, &(grafo[fuente]));
+  push(&fifo, &(grafo[fuente]));
 
 
-  while(!estaVacio_ff(&fifo)){
-    u = pop_ff(&fifo);
+  while(!estaVacio(&fifo)){
+    u = pop(&fifo);
     for(i=0; i<numeroDeNodos; i++){
       if(grafo[i].estado == NODO_INICIALIZADO &&
         u->capacidad[i] - u->flujo[i] > 0){
-        push_ff(&fifo, &(grafo[i]));
+        push(&fifo, &(grafo[i]));
         grafo[i].predecesor = u->id;
       }
     }
@@ -166,17 +166,17 @@ int minimo(int a, int b)
 }
 
 
-int ford_fulkerson(int fuente, int sumidero, Nodoff grafo[], int numeroDeNodos)
+int ford_fulkerson(int fuente, int sumidero, Nodo grafo[], int numeroDeNodos)
 {
   int flujoMaximo = 0;
   int incremento;
-  Nodoff *nodo;
+  Nodo *nodo;
 
   //Inicializar el flujo en 0
   inicializar_flujo_grafo(grafo, numeroDeNodos);
 
 
-  while(bfs_ff(grafo, fuente, sumidero, numeroDeNodos)){
+  while(bfs(grafo, fuente, sumidero, numeroDeNodos)){
     incremento = INFINITO;
     // desde el sumider hasta llegar a la fuente inclusive, siguiendo el
     // camino de aumento (predecesor)
