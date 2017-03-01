@@ -38,6 +38,8 @@ void inicializar_nodo_ff(Nodoff *n, int id)
 {
   int i;
   n->id = id;
+  n->caminoDeAumento = -1;
+  n->estado = NODO_INICIALIZADO;
   for(i=0j; i<VECINOS_MAX; i++)
     n->capacidad[i]=0;
 }
@@ -61,7 +63,7 @@ void inicializar_grafo_ff(Nodoff grafo[])
 void imprimir_grafo_ff(Nodoff grafo[], int numeroDeNodos)
 {
   int i;
-  for(i=0; i<NODOS_MAX; i++)
+  for(i=0; i<numeroDeNodos; i++)
     imprimir_nodo_ff(&(grafo[i]), numeroDeNodos);
 }
 
@@ -137,6 +139,7 @@ int bfs_ff(Nodoff grafo[], int fuente, int sumidero, int numeroDeNodos)
         u->capacidad[i] - u->flujo[i] > 0){
           push_ff(&fifo, &(grafo[i]));
           u->caminoDeAumento = i;
+          break;
       }
     }
   }
